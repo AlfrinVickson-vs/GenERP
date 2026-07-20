@@ -45,7 +45,7 @@ export class AuthController {
 
   @Post("logout")
   async logout(@Req() req: AuthenticatedRequest, @Res({ passthrough: true }) res: Response) {
-    res.clearCookie(this.auth.cookieName, { path: "/" });
+    res.clearCookie(this.auth.cookieName, this.auth.clearCookieOptions());
     if (req.user) {
       await this.audit.record({
         companyId: req.user.companyId,

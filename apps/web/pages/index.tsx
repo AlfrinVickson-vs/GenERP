@@ -755,7 +755,7 @@ type SavedTableView = {
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 2500);
+  const timeout = window.setTimeout(() => controller.abort(), 15000);
 
   let response: Response;
   try {

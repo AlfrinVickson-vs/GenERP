@@ -1,5 +1,6 @@
 import { ForbiddenException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import type { CookieOptions } from "express";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { authenticator } from "otplib";
@@ -62,15 +63,20 @@ export class AuthService {
     }) as SessionPayload;
   }
 
-  cookieOptions() {
+  cookieOptions(): CookieOptions {
     const cookieSecure = String(this.config.get<string | boolean>("COOKIE_SECURE", false)).toLowerCase() === "true";
     return {
       httpOnly: true,
-      sameSite: "lax" as const,
+      sameSite: cookieSecure ? "none" : "lax",
       secure: cookieSecure,
       maxAge: 8 * 60 * 60 * 1000,
       path: "/"
     };
+  }
+
+  clearCookieOptions(): CookieOptions {
+    const { maxAge: _maxAge, ...options } = this.cookieOptions();
+    return options;
   }
 
   async validateLogin(identifier: string, password: string, totpCode?: string, context?: { ip?: string; userAgent?: string }) {
