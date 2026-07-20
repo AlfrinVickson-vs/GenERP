@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "powershell -ExecutionPolicy Bypass -File ..\\..\\scripts\\run-web-clean-path.ps1 dev",
-    "build": "powershell -ExecutionPolicy Bypass -File ..\\..\\scripts\\run-web-clean-path.ps1 build",
-    "start": "powershell -ExecutionPolicy Bypass -File ..\\..\\scripts\\run-web-clean-path.ps1 start",
+    "dev": "node ../../scripts/run-web.js dev",
+    "build": "node ../../scripts/run-web.js build",
+    "start": "node ../../scripts/run-web.js start",
     "_dev": "next dev -p 3000",
     "_build": "next build",
     "_start": "node ../../scripts/start-next.js",
