@@ -1076,8 +1076,8 @@ function ErpApp() {
 
 function LoginScreen() {
   const queryClient = useQueryClient();
-  const [identifier, setIdentifier] = useState("admin@eversafe-demo.test");
-  const [password, setPassword] = useState("Admin123!");
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [totpCode, setTotpCode] = useState("");
   const login = useMutation({
@@ -1109,7 +1109,7 @@ function LoginScreen() {
             Company setup, branches, roles, users, audit logs, finance, inventory, HR, reporting, and integrations are wired into one operational workspace.
           </p>
         </div>
-        <div className="text-sm text-white/60">Demo login: admin@eversafe-demo.test / Admin123!</div>
+        <div />
       </section>
       <section className="flex items-center justify-center p-6">
         <form
