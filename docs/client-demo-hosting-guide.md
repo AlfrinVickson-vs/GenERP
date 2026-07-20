@@ -65,8 +65,8 @@ You will paste this into the API service as `DATABASE_URL`.
 Name: gensis-erp-api
 Runtime: Node
 Root Directory: leave blank
-Build Command: npm install && npm run prisma:generate -w @erp/api && npm run build -w @erp/api
-Start Command: npm run prisma:push -w @erp/api && npm run prisma:seed -w @erp/api && npm run start -w @erp/api
+Build Command: npm install && npm run prisma:generate -w @erp/api && npm run build -w @erp/api && npm run prisma:push -w @erp/api && npm run prisma:seed -w @erp/api
+Start Command: npm run start -w @erp/api
 ```
 
 Add these environment variables:
