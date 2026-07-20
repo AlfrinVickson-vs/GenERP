@@ -66,7 +66,7 @@ Name: gensis-erp-api
 Runtime: Node
 Root Directory: leave blank
 Build Command: npm install && npm run prisma:generate -w @erp/api && npm run build -w @erp/api
-Start Command: npx prisma db push && npx prisma db seed && npm run start -w @erp/api
+Start Command: npm run prisma:push -w @erp/api && npm run prisma:seed -w @erp/api && npm run start -w @erp/api
 ```
 
 Add these environment variables:

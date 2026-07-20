@@ -10,6 +10,7 @@
     "test": "tsx --test src/auth/auth.service.spec.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
     "prisma:generate:sqlite": "powershell -ExecutionPolicy Bypass -File ..\\..\\scripts\\prepare-local-sqlite-prisma.ps1 && prisma generate --schema prisma/schema.local.sqlite.prisma",
     "prisma:push:sqlite": "powershell -ExecutionPolicy Bypass -File ..\\..\\scripts\\prepare-local-sqlite-prisma.ps1 && prisma db push --schema prisma/schema.local.sqlite.prisma",
     "prisma:migrate": "prisma migrate dev",
