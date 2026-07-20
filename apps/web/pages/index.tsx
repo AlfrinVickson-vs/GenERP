@@ -47,7 +47,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import type { ApiUser, CompanySettings, DashboardSummary } from "@erp/types";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+const apiUrl = process.env.NODE_ENV === "production" ? "" : process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
 
 const queryClient = new QueryClient();
 
