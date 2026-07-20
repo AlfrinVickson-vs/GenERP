@@ -1,0 +1,27 @@
+{
+  "name": "single-company-erp",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Single-company ERP monorepo foundation",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w @erp/api",
+    "dev:web": "npm run dev -w @erp/web",
+    "dev:worker": "npm run dev -w @erp/worker",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,css}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  }
+}

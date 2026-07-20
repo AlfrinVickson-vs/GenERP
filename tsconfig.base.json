@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@erp/types": ["packages/types/src"],
+      "@erp/security": ["packages/security/src"],
+      "@erp/validation": ["packages/validation/src"],
+      "@erp/config": ["packages/config/src"]
+    }
+  }
+}
