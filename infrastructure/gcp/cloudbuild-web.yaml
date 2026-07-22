@@ -1,0 +1,15 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -f
+      - infrastructure/docker/web.Dockerfile
+      - --build-arg
+      - API_PROXY_URL=${_API_PROXY_URL}
+      - --build-arg
+      - NEXT_PUBLIC_API_URL=${_API_PROXY_URL}
+      - -t
+      - ${_IMAGE}
+      - .
+images:
+  - ${_IMAGE}

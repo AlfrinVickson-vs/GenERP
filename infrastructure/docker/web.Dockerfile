@@ -1,19 +1,30 @@
-FROM node:22-alpine AS builder
+FROM node:20-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
-COPY apps/web/package.json apps/web/package.json
-COPY packages packages
-RUN npm install
-COPY apps/web apps/web
-COPY tsconfig.base.json .
-RUN npm run build -w @erp/types && npm run build -w @erp/web
 
-FROM node:22-alpine AS runtime
+ARG API_PROXY_URL
+ARG NEXT_PUBLIC_API_URL
+ENV API_PROXY_URL=${API_PROXY_URL}
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+
+COPY package*.json ./
+COPY apps apps
+COPY packages packages
+COPY tsconfig.base.json ./
+COPY scripts scripts
+
+RUN npm ci
+RUN npm run build -w @erp/web
+
+FROM node:20-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=builder /app/apps/web/.next apps/web/.next
-COPY --from=builder /app/apps/web/public apps/web/public
-COPY --from=builder /app/apps/web/package.json apps/web/package.json
-COPY --from=builder /app/node_modules node_modules
+
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/web/package.json ./apps/web/package.json
+COPY --from=builder /app/apps/web/.next ./apps/web/.next
+COPY --from=builder /app/scripts ./scripts
+COPY --from=builder /app/packages ./packages
+
 USER node
 CMD ["npm", "run", "start", "-w", "@erp/web"]
